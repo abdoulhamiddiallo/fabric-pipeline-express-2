@@ -1,0 +1,4 @@
+hub,file,min_rows
+METZ,deliveries_METZ_2026-10-06.csv,400
+NANCY,deliveries_NANCY_2026-10-06.csv,350
+THIONVILLE,deliveries_THIONVILLE_2026-10-06.csv,280
