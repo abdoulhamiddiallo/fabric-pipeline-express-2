@@ -2,7 +2,7 @@
 
 Un pipeline Microsoft Fabric Data Factory piloté par un manifeste. Il lit la liste des fichiers du jour, les copie un par un, vérifie chacun, retire tout fichier incomplet, reconstruit la table Delta et envoie le compte rendu. Dix activités, huit types d'activité, aucune ligne de code, et un pipeline qui préfère finir en échec plutôt que de charger une donnée fausse.
 
-**Guide PDF de 7 pages inclus** : [`Pipeline_Fabric_Guide_2.pdf`](Pipeline_Fabric_Guide_2.pdf). Chaque activité, chaque champ, chaque expression, et les chiffres à retrouver à l'unité près.
+**Guide PDF de 7 pages inclus** : [`Pipeline_Fabric_Guide.pdf`](Pipeline_Fabric_Guide.pdf). Chaque activité, chaque champ, chaque expression, et les chiffres à retrouver à l'unité près.
 
 ![Le pipeline PL_Deliveries_Express](docs/images/pipeline_diagram.svg)
 
@@ -10,9 +10,9 @@ Un pipeline Microsoft Fabric Data Factory piloté par un manifeste. Il lit la li
 
 Le pipeline tel qu'il apparaît dans Fabric, puis la vérification dans le point de terminaison SQL du lakehouse.
 
-![Le pipeline PL_Deliveries_Express dans Fabric](docs/images/pipeline_canvas.png)
+![Le pipeline PL_Deliveries_Express dans Fabric](docs/images/pipeline_canvas.svg)
 
-![Le résultat de la requête de vérification](docs/images/sql_results.png)
+![Le résultat de la requête de vérification](docs/images/sql_results.svg)
 
 ## 🎯 Résultats clés
 
@@ -105,12 +105,12 @@ data/
 └── deliveries_THIONVILLE_2026-10-07.csv   335 lignes
 ```
 
-Une ligne par colis : identifiant, hub, horodatage, chauffeur, ville, code postal, service, poids, distance, durée, statut, respect du délai. Données fictives, générées de façon déterministe par `tools/generate_dataset.py`.
+Une ligne par colis : identifiant, hub, horodatage, chauffeur, ville, code postal, service, poids, distance, durée, statut, respect du délai. Données fictives, conçues pour l'exercice.
 
 ## 🚀 Reproduire l'exercice
 
 1. Créer un lakehouse `LH_Deliveries`.
-2. Construire `PL_Deliveries_Express` en suivant `Pipeline_Fabric_Guide_2.pdf`. La connexion HTTP pointe sur `https://raw.githubusercontent.com/abdoulhamiddiallo/fabric-pipeline-express-2/main/data/`.
+2. Construire `PL_Deliveries_Express` en suivant `Pipeline_Fabric_Guide.pdf`. La connexion HTTP pointe sur `https://raw.githubusercontent.com/abdoulhamiddiallo/fabric-pipeline-express-2/main/data/`.
 3. Exécuter avec `load_date = 2026-10-05`, `2026-10-06`, `2026-10-07`, puis à nouveau `2026-10-05`, et retrouver les chiffres du tableau ci-dessus.
 4. Vérifier dans le point de terminaison SQL :
 
@@ -131,10 +131,6 @@ FROM deliveries GROUP BY hub ORDER BY hub;
 ## 🧰 Stack technique
 
 Microsoft Fabric Data Factory · Lakehouse et Delta Lake · Office 365 Outlook · Point de terminaison SQL
-
-## 🧪 Validation
-
-`tools/expected_results.py` rejoue les quatre exécutions sur les fichiers de `data/` et imprime les compteurs attendus, à l'unité près.
 
 ## ✅ Conclusion
 
